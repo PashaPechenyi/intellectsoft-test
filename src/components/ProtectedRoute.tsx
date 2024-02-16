@@ -5,20 +5,20 @@ import { ROOT_URL, SIGN_IN_URL } from "../constants/urls";
 
 type ProtectedRouteProps = {
   children: ReactElement;
-  withAuthorize?: boolean;
+  withAuthorization?: boolean;
 };
-const ProtectedRoute = ({ children, withAuthorize = true }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ children, withAuthorization = true }: ProtectedRouteProps) => {
   const [user] = useAuth();
   const navigate = useNavigate();
   const isAuthorized = user !== null;
-  const isPageAllowed = withAuthorize === isAuthorized;
+  const isPageAllowed = withAuthorization === isAuthorized;
 
   useEffect(() => {
     if (isPageAllowed) return;
 
-    const pathToRedirect = withAuthorize ? SIGN_IN_URL : ROOT_URL;
+    const pathToRedirect = withAuthorization ? SIGN_IN_URL : ROOT_URL;
     navigate(pathToRedirect, { replace: true });
-  }, [navigate, isPageAllowed, withAuthorize]);
+  }, [navigate, isPageAllowed, withAuthorization]);
 
   return isPageAllowed ? children : null;
 };

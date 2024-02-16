@@ -17,7 +17,7 @@ function App() {
           <Route
             path={SIGN_IN_URL}
             element={
-              <ProtectedRoute withAuthorize={false}>
+              <ProtectedRoute withAuthorization={false}>
                 <SignInPage />
               </ProtectedRoute>
             }
